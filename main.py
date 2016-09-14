@@ -14,7 +14,6 @@ class PolyItem:
         :param other: PolyItem
         :return: bool
         """
-        print("called __eq__")
         return self.power == other.power
 
     def __repr__(self, *args, **kwargs):
@@ -53,12 +52,9 @@ class Poly:
         return string
 
 
-i1 = PolyItem(2.2, 3)
-i2 = PolyItem(2.2, 3)
+i1 = PolyItem(5.5, 3)
 p1 = Poly()
 p1.add_item(i1)
 p1.add_item(i1)
-p1.add_item(i2)
+p1.add_item(i1)
 print(p1)
-
-# about to invade
