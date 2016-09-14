@@ -41,9 +41,9 @@ class Poly:
         # check if already in list of items
         if item in self.items:
             item_index = self.items.index(item)
-            temp_ref = self.items.pop(item_index)
-            new_factor = temp_ref.factor + item.factor
-            self.items.append(PolyItem(new_factor, item.power))
+            item_ref = self.items[item_index]
+            new_factor = item_ref.factor + item.factor
+            item_ref.factor = new_factor
             return
 
         self.items.append(item)
@@ -53,12 +53,10 @@ class Poly:
         return string
 
 
-i1 = PolyItem(2.2, 3)
-i2 = PolyItem(2.2, 3)
+# result should be 16.5
+i1 = PolyItem(5.5, 3)
 p1 = Poly()
 p1.add_item(i1)
 p1.add_item(i1)
-p1.add_item(i2)
-print(p1)
-
-# about to invade
+p1.add_item(i1)
+print(p1)  # gives wrong result cos we are operating on item itself
