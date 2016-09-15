@@ -50,6 +50,18 @@ class Poly:
         new_factor = temp_ref.factor + item.factor
         self.items.append(PolyItem(new_factor, item.power))
 
+    def __add__(self, other):
+        assert isinstance(other, Poly)
+
+        newPoly = Poly()
+
+        for s_item in self.items:
+            newPoly.add_item(s_item)
+
+        for o_item in other.items:
+            newPoly.add_item(o_item)
+
+        return newPoly
 
     def __str__(self):
         string = "Poly: " + str([''.join(str(item)) for item in self.items])
@@ -66,3 +78,16 @@ i3 = PolyItem(2.2, 4)
 p1.add_item(i2)
 p1.add_item(i3)
 print(p1)
+
+p2 = Poly()
+
+i21 = PolyItem(1.1, 4)
+i22 = PolyItem(4.3, 8)
+
+p2.add_item(i21)
+p2.add_item(i22)
+
+print(p2)
+
+p3 = p1 + p2
+print(p3)
