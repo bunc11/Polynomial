@@ -47,14 +47,14 @@ class Poly:
             return
 
         self.items.append(item)
-        self.items.sort(reverse = True)
+        self._sort()
 
     def _add_existing(self, item):
         item_index = self.items.index(item)
         temp_ref = self.items.pop(item_index)
         new_factor = temp_ref.factor + item.factor
         self.items.append(PolyItem(new_factor, item.power))
-        self.items.sort(reverse = True)
+        self._sort()
 
     def _sort(self):
         self.items.sort(reverse = True)
