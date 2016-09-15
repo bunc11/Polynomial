@@ -16,6 +16,10 @@ class PolyItem:
         """
         return self.power == other.power
 
+    def __lt__(self, other):
+        assert isinstance(other, PolyItem)
+        return self.power < other.power
+
     def __repr__(self, *args, **kwargs):
         return "{}; {}".format(self.factor, self.power)
 
@@ -43,12 +47,17 @@ class Poly:
             return
 
         self.items.append(item)
+        self.items.sort(reverse = True)
 
     def _add_existing(self, item):
         item_index = self.items.index(item)
         temp_ref = self.items.pop(item_index)
         new_factor = temp_ref.factor + item.factor
         self.items.append(PolyItem(new_factor, item.power))
+        self.items.sort(reverse = True)
+
+    def _sort(self):
+        self.items.sort(reverse = True)
 
     def __add__(self, other):
         assert isinstance(other, Poly)
@@ -61,6 +70,7 @@ class Poly:
         for o_item in other.items:
             newPoly.add_item(o_item)
 
+        newPoly._sort()
         return newPoly
 
     def __str__(self):
